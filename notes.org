@@ -1,0 +1,55 @@
+* Notes
+<2022-10-21 Fri 12:44>: Related CRUD Table for an example 'newspaper' app:
+|---------------+----------------------------------------|
+| CRUD Category | Action(s)                              |
+|---------------+----------------------------------------|
+| READ          | Display a list of all newsletters      |
+| READ          | Display an individual newsletter       |
+| CREATE        | Create the new newsletter instance     |
+| UPDATE        | Update the newsletter instance         |
+| DESTROY       | Delete an existing newsletter instance |
+|---------------+----------------------------------------|
+
+Related table for RESTful routes meets Rails:
+|--------------+------------------+---------------------+------------------------------|
+| HTTP Verb    | Route            | Controller#Action   | Description                  |
+|--------------+------------------+---------------------+------------------------------|
+| GET          | /newsletters     | newsletters#index   | Show all newsletters         |
+| POST         | /newsletters     | newsletters#create  | Create a new newsletter      |
+| GET          | /newsletters/:id | newsletters#show    | Show a specific newsletter   |
+| PATCH or PUT | /newsletters/:id | newsletters#update  | Update a specific newsletter |
+| DELETE       | /newsletters/:id | newsletters#destroy | Delete a specific newsletter |
+|--------------+------------------+---------------------+------------------------------|
+
+My better detailed workflow includes:
+- Request --> Rails Router --> Controller --> JSON Response
+
+|-------------------+------------------+-----------------------------------------------------+-------------------+---------------------------|
+| Request HTTP Verb | Request Route    | Rails Router Route Action                           | Controller Action | JSON Response             |
+|-------------------+------------------+-----------------------------------------------------+-------------------+---------------------------|
+| GET               | /newsletters     | Router parses request  / sends to controller action | index             | array of all newsletters  |
+| POST              | /newsletters     |                                                     | create            | newly created newsletter  |
+| GET               | /newsletters/:id |                                                     | show              | one individual newsletter |
+| PATCH             | /newsletters/:id |                                                     | update            | updated newsletter        |
+| DELETE            | /newsletters/:id |                                                     | destroy           | empty response            |
+|-------------------+------------------+-----------------------------------------------------+-------------------+---------------------------|
+
+Difference between 'PATCH' and 'PUT' for Rails projects:
+- PUT: used when we want to replace an entire resource.
+- PATCH: used when we want to update a specific part of a resource.
+
+CRUD Methods And Associated HTTP Versions:
+- Create --> POST
+- Read --> GET
+- Update --> PATCH
+- DELETE --> DELETE
+
+Rails Controller Actions / Methods:
+- 'index' --> Gets an array of all objects
+- 'create' --> Creates a new object
+- 'show' --> Shows an individual object
+- 'update' --> Updates an individual object
+- 'destroy' --> Deletes an individual object
+
+Two pieces of information need to be combined to create an HTTP request:
+- HTTP Verb + Routes
